@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GlobalStyles from "Components/GlobalStyles"
-import Home from "./Home"
+import CurrentContainer from '../CurrentWeather/CurrentContainer';
+import FiveContainer from '../FiveDayWeather/FiveContainer';
 
 
 
@@ -11,7 +12,12 @@ import Home from "./Home"
     return(
       <>
       <GlobalStyles/>
-      <Home/>
+      <div className="left">
+      <FiveContainer/>
+      </div>
+      <div className="right">
+      <CurrentContainer/>
+      </div>
     </>
     )
    }
