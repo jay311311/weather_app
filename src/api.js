@@ -1,5 +1,5 @@
 import axios from"axios";
- const cityId = 2172797; 
+
 
 const api  = axios.create({
     baseURL:"https://api.openweathermap.org/data/2.5/",
@@ -7,19 +7,21 @@ const api  = axios.create({
 })
 
  export const currentApi = {
-         currentWeather: (cityId) => api.get(`weather?id=${cityId}`)
+         currentWeather: (lat, lon) => api.get(`weather?lat=${lat}&lon=${lon}`,
+                         {params:lat, lon})
+
+                         
      }
     
 /* api.get(`forecast?id=${cityId}`); */
-// export currentApi ={
-//     currentWeather: (id) => api.get("weather/${id}")
-// }
 
 
 
- export const fiveDayApi ={
-    fiveWeather: (cityId) => api.get(`forecast?id=${cityId}`)
- }
+  export const fiveDayApi ={
+    fiveWeather: (cityId) => api.get(`forecast?id=${cityId}`,
+    {params:cityId})
+ } 
+
 /* export default api */
 
 

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import FivePresent from "./FivePresent"
 /*  import {FiveApi} from "../api";  */
 
-class FiveContainer extends Component{
+class FiveContainer extends React.Component{
     state={
         FiveWeather:null,
         error:null,
