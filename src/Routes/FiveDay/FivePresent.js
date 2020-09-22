@@ -1,3 +1,9 @@
-import React from "react";
+import React from 'react'
 
-export default (currentApi) => "FIVE_P"
+export default function FivePresent() {
+    return (
+        <div>
+            <h5>hi from 5</h5>
+        </div>
+    )
+}

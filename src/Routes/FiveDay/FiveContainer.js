@@ -1,18 +1,32 @@
 import React from "react";
 import FivePresent from "./FivePresent"
-/*  import {FiveApi} from "../api";  */
+/* import {FiveApi} from "../api";   */
 
 class FiveContainer extends React.Component{
     state={
-        FiveWeather:null,
+        FiveResult:null,
+        searchTerm:"",
         error:null,
         isLoading:true
     }
 
-    render(){
-        const {FiveWeather, error, isLoading} = this.state
+    handleSubmit = () =>{
+        const {searchTerm}= this.state
+        if(searchTerm !== ""){
+            this.searchByTerm()
+        }
+    }
 
-        return<FivePresent FiveWeather={FiveWeather} error={error} isLoading={isLoading}/>
+    searchByTerm = () =>{
+        const {searchTerm}= this.state
+        
+    } 
+
+
+    render(){
+        const {FiveResult, error, isLoading,searchTerm} = this.state
+
+        return<FivePresent FiveResult={FiveResult} searchTerm={searchTerm} error={error} isLoading={isLoading}/>
     }
 }
 

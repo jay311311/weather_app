@@ -6,20 +6,31 @@ const api  = axios.create({
     params:{appid:"e71e68187e6da07eb17db48a8cf2dc1b"}
 })
 
- export const currentApi = {
-         currentWeather: (lat, lon) => api.get(`weather?lat=${lat}&lon=${lon}`,
-                         {params:lat, lon})
 
-                         
-     }
+
+
+
+/* export const currentApi = async() =>{
+  const currentWeather = await api.get(`weather?lat=35&lon=139`) 
+  console.log(currentWeather.data)
+} 
+
+/*  */ 
+
+
+
+ export const currentApi = {
+    search :(city) =>  api.get(`weather?q=${city}`)
+     } 
+
+  
     
 /* api.get(`forecast?id=${cityId}`); */
 
 
 
   export const fiveDayApi ={
-    fiveWeather: (cityId) => api.get(`forecast?id=${cityId}`,
-    {params:cityId})
+    fiveWeather: (cityId) => api.get(`forecast?id=${cityId}`)
  } 
 
 /* export default api */
