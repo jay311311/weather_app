@@ -1,33 +1,57 @@
-import React from "react";
+import React, { Component } from "react";
 import FivePresent from "./FivePresent"
-/* import {FiveApi} from "../api";   */
+import {fiveApi} from "../../api";   
 
-class FiveContainer extends React.Component{
+export default class CurrentContainer extends Component{
     state={
-        FiveResult:null,
-        searchTerm:"",
+        fiveResults:null,
+        searchTerm:"london",
         error:null,
-        isLoading:true
+        loading:true
+    }
+
+    componentDidMount(){
+        this.handleSubmit();
     }
 
     handleSubmit = () =>{
-        const {searchTerm}= this.state
+        const {searchTerm}= this.state;
         if(searchTerm !== ""){
             this.searchByTerm()
         }
     }
 
-    searchByTerm = () =>{
-        const {searchTerm}= this.state
+    searchByTerm = async() =>{
+        const {searchTerm}= this.state;
+        this.setState({loading:false})
+
+        try{
+            const  fiveResults = await fiveApi.five(searchTerm)
+            
+            console.log(fiveResults)
+        } catch{
+            this.setState({
+                error:"i can't find data"
+            })
+        }finally{
+            this.setState({
+                loading: false
+            })
+        }
         
     } 
 
 
     render(){
-        const {FiveResult, error, isLoading,searchTerm} = this.state
+        const {fiveResults, error, loading, searchTerm} = this.state;
 
-        return<FivePresent FiveResult={FiveResult} searchTerm={searchTerm} error={error} isLoading={isLoading}/>
+        return(
+        <FivePresent
+            fiveResults={fiveResults} 
+            searchTerm={searchTerm} 
+            error={error} 
+            loading={loading}
+            />)
     }
 }
 
-export default FiveContainer

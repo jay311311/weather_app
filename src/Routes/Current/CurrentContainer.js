@@ -41,7 +41,6 @@ export default class CurrentContainer extends Component{
             const {data:weatherResults} = await  currentApi.search(searchTerm);
          
             this.setState({
-                
                weatherResults
             })
            
