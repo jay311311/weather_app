@@ -34,18 +34,20 @@ export default class CurrentContainer extends Component{
     searchByTerm = async () =>{
         const {searchTerm} = this.state;
         this.setState({
+            error:null,
             loading:true
         })
         try{
             const {data:weatherResults} = await  currentApi.search(searchTerm);
          
             this.setState({
-                searchTerm:"",
+                
                weatherResults
             })
            
         } catch{
             this.setState({
+                weatherResults:null,
                 error:"ican't find imformation"
             })
         } finally{

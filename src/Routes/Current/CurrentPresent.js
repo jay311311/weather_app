@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import Message from "../../Components/Message"
-
+import Section from "../../Components/Section"
 import MainScreen from "./MainScreen"
 
 /* import Section from "../../Components/Section" */
@@ -29,33 +29,33 @@ text-align:center;
             <Container>
                 <Form onSubmit={handleSubmit}>
                     <Input 
-                    placeholder="enter city" 
+                    placeholder="enter your city" 
                     value={searchTerm} 
                     onChange={updateTerm}
                     />
                 </Form>
                 
-                   {weatherResults && !error ? 
-                      (
-                        <MainScreen
-                        error={error}
-                        key = {weatherResults.weather.id}
-                        id = {weatherResults.weather.id}
-                        name = {weatherResults.name}
-                        iconImg={weatherResults.weather[weatherResults.weather.length - 1]}
-                        temps={weatherResults.main}
-                    />
-                        )
-                    : (<Message color="#e74c3c" text={" "}/>)}
-                     
-                {error && <Message color="#e74c3c" text={"error"}/>}
-               {weatherResults && weatherResults.length === 0  && 
-               (<Message  text = {"nothing Found"} color="#95a5a6" />) }
+                {weatherResults? (
+                     <MainScreen
+                     error={error}
+                     key = {weatherResults.weather.id}
+                     id = {weatherResults.weather.id}
+                     name = {weatherResults.name}
+                     iconImg={weatherResults.weather[weatherResults.weather.length - 1]}
+                     temps={weatherResults.main}
+                 />   
+                ) : <Message color="#e74c3c" text={""}/>}
+                
+               
+
+                {error && <Message color="darkgray" text={" Check Your Letter (in English)"}/>}
+               
               
             </Container>
             
        )
         
+  
 
             CurrentPresent.propTypes={
                 error : PropTypes.string,
