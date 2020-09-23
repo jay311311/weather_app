@@ -3,14 +3,13 @@ import CurrentPresent from "./CurrentPresent"
 import { currentApi } from "../../api"; 
 
 
+
 export default class CurrentContainer extends Component{
     state={
         weatherResults:null,
-        searchTerm:"london",
+        searchTerm:"",
         error:null,
-        loading:true,
-        iconImage:null
-       
+        loading:true
     }
 
 
@@ -29,24 +28,22 @@ export default class CurrentContainer extends Component{
         this.setState({
             searchTerm: value
         })
-        console.log(value)
+        
     }
 
     searchByTerm = async () =>{
-        const {searchTerm,iconImage} = this.state;
+        const {searchTerm} = this.state;
         this.setState({
             loading:true
         })
         try{
-
             const {data:weatherResults} = await  currentApi.search(searchTerm);
-            const iconImage = weatherResults.weather[weatherResults.weather.length-1];
-
+         
             this.setState({
-                iconImage,
+                searchTerm:"",
                weatherResults
             })
-            console.log(weatherResults);
+           
         } catch{
             this.setState({
                 error:"ican't find imformation"
@@ -54,6 +51,7 @@ export default class CurrentContainer extends Component{
         } finally{
             this.setState({
                 loading:false
+                
             })
         }
 
@@ -61,15 +59,13 @@ export default class CurrentContainer extends Component{
   
 
     render(){
-        const { error, iconImage,loading,weatherResults,searchTerm} = this.state
-        
+        const { error, loading,weatherResults,searchTerm} = this.state
         return(
             <CurrentPresent  
                 searchTerm={searchTerm}
                 weatherResults={weatherResults}
                 error={error} 
                 loading={loading}
-                iconImage={iconImage}
                 handleSubmit={this.handleSubmit}
                 updateTerm={this.updateTerm}
 
