@@ -4,53 +4,64 @@ import {fiveApi} from "../../api";
 
 export default class CurrentContainer extends Component{
     state={
-        fiveResults:null,
-        searchTerm:"london",
+        fiveResults:[],
+        searchWords:"",
         error:null,
-        loading:true
+        loading:true,
     }
 
-    componentDidMount(){
-        this.handleSubmit();
+  
+
+    handleChange=(event)=>{
+        const {target:{value}} = event
+        this.setState({
+            searchWords:value
+        })
     }
 
-    handleSubmit = () =>{
-        const {searchTerm}= this.state;
-        if(searchTerm !== ""){
-            this.searchByTerm()
+    handleSubmit = (event) =>{
+         event.preventDefault();
+        const {searchWords}= this.state;
+        if(searchWords !== ""){
+            this.searchByTerm();
         }
     }
 
-    searchByTerm = async() =>{
-        const {searchTerm}= this.state;
+
+    searchByTerm = async() => {
+        const {searchWords}= this.state;
         this.setState({loading:false})
 
         try{
-            const  fiveResults = await fiveApi.five(searchTerm)
+            const {data:{list:fiveResults}}  = await fiveApi.five(searchWords)
+
+            this.setState({
+                fiveResults
+            })
             
-            console.log(fiveResults)
-        } catch{
-            this.setState({
-                error:"i can't find data"
-            })
-        }finally{
-            this.setState({
-                loading: false
-            })
+        } catch {
+            this.setState({error:"i can't find data"})
+        } finally {
+            this.setState({loading: false})
         }
         
     } 
 
 
     render(){
-        const {fiveResults, error, loading, searchTerm} = this.state;
-
+        const {fiveResults, error, loading, searchWords} = this.state;
+        
+        console.log(this.state)
         return(
+
         <FivePresent
-            fiveResults={fiveResults} 
-            searchTerm={searchTerm} 
+            searchWords={searchWords} 
             error={error} 
             loading={loading}
+            fiveResults={fiveResults} 
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+        
             />)
     }
 }

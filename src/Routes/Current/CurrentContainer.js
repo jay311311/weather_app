@@ -35,7 +35,7 @@ export default class CurrentContainer extends Component{
         const {searchTerm} = this.state;
         this.setState({
             error:null,
-            loading:true
+            loading:false
         })
         try{
             const {data:weatherResults} = await  currentApi.search(searchTerm);
@@ -60,7 +60,9 @@ export default class CurrentContainer extends Component{
   
 
     render(){
+        
         const { error, loading,weatherResults,searchTerm} = this.state
+        console.log(this.state)
         return(
             <CurrentPresent  
                 searchTerm={searchTerm}

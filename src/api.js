@@ -6,14 +6,13 @@ const api  = axios.create({
     params:{appid:"e71e68187e6da07eb17db48a8cf2dc1b" }
 })
 
-
  export const currentApi = {
     search :(city) =>  api.get(`weather?q=${city}`)
      } 
 
 
   export const fiveApi = {
-    five: (cityName) => api.get(`forecast?q=${cityName}`)
+    five: (cityName) => api.get(`forecast?q=${cityName}`,{params:{units:"metric"}})
  } 
 
 
