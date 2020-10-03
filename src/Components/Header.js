@@ -30,7 +30,7 @@ export default withRouter ( ({location:{pathname}}) => (
                 <Slink  to="/">current</Slink>
             </Item>
             <Item current={pathname === "/forecast"}>
-                <Slink  to="/forecast">5days</Slink>
+                <Slink  to="/forecast">3days</Slink>
             </Item>
         </List>
     </Header>

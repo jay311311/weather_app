@@ -11,8 +11,8 @@ const api  = axios.create({
      } 
 
 
-  export const fiveApi = {
-    five: (cityName) => api.get(`forecast?q=${cityName}`,{params:{units:"metric"}})
+  export const threeApi = {
+    three: (cityName) => api.get(`forecast?q=${cityName}`,{params:{units:"metric",cnt:24}})
  } 
 
 

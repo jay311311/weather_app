@@ -20,8 +20,6 @@ text-align:center;
     font-size:20px;
     `;
 
- 
-
         const CurrentPresent = ({weatherResults, searchTerm, handleSubmit,updateTerm,error})=> 
        
         (

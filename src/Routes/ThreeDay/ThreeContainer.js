@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import FivePresent from "./FivePresent"
-import {fiveApi} from "../../api";   
+import ThreePresent from "./ThreePresent"
+import {threeApi} from "../../api";   
 
 export default class CurrentContainer extends Component{
     state={
-        fiveResults:[],
+        threeResults:[],
         searchWords:"",
         error:null,
         loading:true,
@@ -15,6 +15,7 @@ export default class CurrentContainer extends Component{
     handleChange=(event)=>{
         const {target:{value}} = event
         this.setState({
+            threeResults:[],
             searchWords:value
         })
     }
@@ -30,17 +31,19 @@ export default class CurrentContainer extends Component{
 
     searchByTerm = async() => {
         const {searchWords}= this.state;
-        this.setState({loading:false})
+        this.setState({
+            error:null,
+            loading:false,
+          })
 
         try{
-            const {data:{list:fiveResults}}  = await fiveApi.five(searchWords)
-
+            const {data:{list:threeResults}}  = await threeApi.three(searchWords)
             this.setState({
-                fiveResults
+                threeResults
             })
-            
         } catch {
-            this.setState({error:"i can't find data"})
+            this.setState({
+                error:"i can't find data"})
         } finally {
             this.setState({loading: false})
         }
@@ -49,19 +52,15 @@ export default class CurrentContainer extends Component{
 
 
     render(){
-        const {fiveResults, error, loading, searchWords} = this.state;
-        
-        console.log(this.state)
+        const {threeResults, error, loading, searchWords} = this.state;
         return(
-
-        <FivePresent
+        <ThreePresent
             searchWords={searchWords} 
             error={error} 
             loading={loading}
-            fiveResults={fiveResults} 
+            threeResults={threeResults} 
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
-        
             />)
     }
 }
