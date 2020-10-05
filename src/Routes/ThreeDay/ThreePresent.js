@@ -5,17 +5,19 @@ import { Line } from 'react-chartjs-2';
 import Message from "../../Components/Message"
 
 const Container = styled.div`
+
 text-align:center;
     padding:0 10px;
 `;
 const Form = styled.form`
     margin-bottom :50px;
+    text-align:center;
     width:100%;
     `;
 
 const Input = styled.input`
     all:unset;
-    font-size:28px;
+    font-size:20px;
     width:100%;
 `;
 
@@ -60,12 +62,12 @@ const temp = threeResults.map(three=>three.main.temp);
              (
              <>
              <Title>{searchWords}'s temperature </Title>
-             <Standard>standards is "Celsius(°C)"</Standard>
+             <Standard>units is "Celsius(°C)"</Standard>
             <Line data={chartData} />
             </> 
              ) : <Message color="red" text={" "}/>
             }
-             {error && <Message color="red" text={" Check Your Letter (in English)"}/>}
+             {error && <Message color="gray" text={" Check Your Letter (in English)"}/>}
            
         </Container>
     )

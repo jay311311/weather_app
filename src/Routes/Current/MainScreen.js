@@ -28,20 +28,20 @@ margin-bottom:5px;
 
 const ReportContainer = styled.div`
 &:nth-child(1){font-size:100px};
-
 display:flex;
-justify-content:space-between;
+justify-content:center;
 align-items:center;
 `
 const Report = styled.div`
-width:120px;
+width:150px;
  height:100%;
  padding:10px 0 20px 0;
  margin:0 auto;
-  text-align:center;
+text-align:center;
 `
 const ReportDetail = styled.span`
 text-align:center;
+
 `
 
 
@@ -49,7 +49,7 @@ const MainScreen = ({ name, iconImg, temps, cloud, windSpeed }) =>
 
 (<Container>    
    <Main>
-        <Title>{name}의 날씨</Title>
+        <Title>{name}'s weather</Title>
         <Icon 
             bgUrl={`https://openweathermap.org/img/wn/${iconImg.icon}@2x.png`} 
             alt={iconImg.description} >
@@ -60,7 +60,7 @@ const MainScreen = ({ name, iconImg, temps, cloud, windSpeed }) =>
         <ReportContainer>
         <Report>
             <ReportDetail>
-                현재  {Math.round(temps.temp - 273.15) } &#176;C
+                current  {Math.round(temps.temp - 273.15) } &#176;C
             </ReportDetail>
         </Report>
         </ReportContainer>    
@@ -68,36 +68,36 @@ const MainScreen = ({ name, iconImg, temps, cloud, windSpeed }) =>
     <ReportContainer>
         <Report>
             <ReportDetail>
-               최고기온  {Math.round(temps.temp_max - 273.15) } &#176;C
+                temp_max  {Math.round(temps.temp_max - 273.15) } &#176;C
             </ReportDetail>
         </Report>
         <Report>
             <ReportDetail>
-                최저기온   {Math.round(temps.temp_min - 273.15) } &#176;C
-            </ReportDetail>
-        </Report>
-    </ReportContainer>
-    <ReportContainer>
-        <Report>
-            <ReportDetail>
-                체감기온 {Math.round(temps.feels_like - 273.15) } &#176;C
-            </ReportDetail>
-        </Report>
-        <Report>
-            <ReportDetail>
-                습도   {Math.round(temps.humidity) } %
+                temp_min   {Math.round(temps.temp_min - 273.15) } &#176;C
             </ReportDetail>
         </Report>
     </ReportContainer>
     <ReportContainer>
         <Report>
             <ReportDetail>
-                풍속 {windSpeed} m/s
+                feels like {Math.round(temps.feels_like - 273.15) } &#176;C
             </ReportDetail>
         </Report>
         <Report>
             <ReportDetail>
-                흐림   { cloud} %
+                humidity   {Math.round(temps.humidity) } %
+            </ReportDetail>
+        </Report>
+    </ReportContainer>
+    <ReportContainer>
+        <Report>
+            <ReportDetail>
+                wind speed {windSpeed} m/s
+            </ReportDetail>
+        </Report>
+        <Report>
+            <ReportDetail>
+                cloud   { cloud} %
             </ReportDetail>
         </Report>
     </ReportContainer>
