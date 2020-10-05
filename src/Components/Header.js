@@ -4,9 +4,12 @@ import{Link, withRouter} from "react-router-dom"
 
 const List =styled.ul`
 display:flex;
+justify-content:center;
 `;
 const Header = styled.ul`
 display:flex;
+justify-content:center;
+padding-bottom:10px;
 `
 const Item = styled.li`
 width:80px;

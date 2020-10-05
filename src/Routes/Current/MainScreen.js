@@ -45,7 +45,7 @@ text-align:center;
 `
 
 
-const MainScreen = ({ name, iconImg, temps }) =>
+const MainScreen = ({ name, iconImg, temps, cloud, windSpeed }) =>
 
 (<Container>    
    <Main>
@@ -86,6 +86,18 @@ const MainScreen = ({ name, iconImg, temps }) =>
         <Report>
             <ReportDetail>
                 습도   {Math.round(temps.humidity) } %
+            </ReportDetail>
+        </Report>
+    </ReportContainer>
+    <ReportContainer>
+        <Report>
+            <ReportDetail>
+                풍속 {windSpeed} m/s
+            </ReportDetail>
+        </Report>
+        <Report>
+            <ReportDetail>
+                흐림   { cloud} %
             </ReportDetail>
         </Report>
     </ReportContainer>

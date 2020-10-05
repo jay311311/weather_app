@@ -62,7 +62,7 @@ export default class CurrentContainer extends Component{
     render(){
         
         const { error, loading,weatherResults,searchTerm} = this.state
-        console.log(this.state)
+        console.log(weatherResults)
         return(
             <CurrentPresent  
                 searchTerm={searchTerm}
@@ -71,7 +71,6 @@ export default class CurrentContainer extends Component{
                 loading={loading}
                 handleSubmit={this.handleSubmit}
                 updateTerm={this.updateTerm}
-
             />
         )
     }

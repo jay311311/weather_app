@@ -11,7 +11,7 @@ import MainScreen from "./MainScreen"
 text-align:center;
     `;
     const Form = styled.form`
-    margin-bottom:50px;
+    margin-bottom:30px;
     text-align:center;
     `;
 
@@ -40,6 +40,8 @@ text-align:center;
                      name = {weatherResults.name}
                      iconImg={weatherResults.weather[weatherResults.weather.length - 1]}
                      temps={weatherResults.main}
+                     cloud={weatherResults.clouds.all}
+                     windSpeed={weatherResults.wind.speed}
                  />   
                 ) : <Message color="#e74c3c" text={""}/>}
                 
