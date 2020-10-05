@@ -5,7 +5,6 @@ import { Line } from 'react-chartjs-2';
 import Message from "../../Components/Message"
 
 const Container = styled.div`
-
 text-align:center;
     padding:0 10px;
 `;
@@ -28,7 +27,13 @@ padding:10px 0;
 const Standard = styled.span`
 font-size:.8rem;
 color:#718093;
-
+`
+const CartContainer = styled.div`
+ @media all and (max-width: 767px) {
+    width:90%
+  }
+width:700px;
+margin:0 auto;
 `
 
 const FivePresent = ( {threeResults, error, searchWords,handleSubmit,handleChange}) => {
@@ -63,7 +68,9 @@ const temp = threeResults.map(three=>three.main.temp);
              <>
              <Title>{searchWords}'s temperature </Title>
              <Standard>units is "Celsius(°C)"</Standard>
-            <Line data={chartData} />
+            <CartContainer>
+                <Line data={chartData}  />
+            </CartContainer>
             </> 
              ) : <Message color="red" text={" "}/>
             }
